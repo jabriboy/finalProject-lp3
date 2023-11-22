@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>finalProject_lp3.BLL</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\finalProject-lp3.DAL\finalProject-lp3.DAL.csproj" />
+    <ProjectReference Include="..\finalProject-lp3.MODEL\finalProject-lp3.MODEL.csproj" />
+  </ItemGroup>
+
+</Project>
