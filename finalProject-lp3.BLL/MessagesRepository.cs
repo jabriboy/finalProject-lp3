@@ -5,22 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using finalProject_lp3.MODEL;
 using finalProject_lp3.DAL.DBContext;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace finalProject_lp3.BLL
 {
     public static class MessagesRepository
     {
-        public static Message addUser(Message _m)
+        public static Message addMessage(Message _m)
         {
             using (var dbContext = new DbContext())
             {
                 dbContext.Add(_m);
+                /*Chat c = ChatRepository.getById(_m.IdChat);
+                if (c == null) { return null; }
+                c.Messages.Add(_m);
+                ChatRepository.updateChat(c);*/
                 dbContext.SaveChanges();
             }
             return _m;
         }
 
-        public static Message removeUser(Message _m)
+        public static Message removeMessage(Message _m)
         {
             using (var dbContext = new DbContext())
             {

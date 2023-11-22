@@ -10,7 +10,7 @@ namespace finalProject_lp3.BLL
 {
     public static class ChatRepository
     {
-        public static Chat addUser(Chat _c)
+        public static Chat addChat(Chat _c)
         {
             using (var dbContext = new DbContext())
             {
@@ -20,7 +20,7 @@ namespace finalProject_lp3.BLL
             return _c;
         }
 
-        public static Chat removeUser(Chat _c)
+        public static Chat removeChat(Chat _c)
         {
             using (var dbContext = new DbContext())
             {
@@ -54,6 +54,19 @@ namespace finalProject_lp3.BLL
                 var chats = dbContext.Chats.ToList();
                 return chats;
             }
+        }
+
+        public static Chat updateChat(Chat chat)
+        {
+            using (var dbContext = new DbContext())
+            {   
+                var _chat = dbContext.Chats.Single(c => c.Id == chat.Id);
+                dbContext.Chats.Remove(_chat);
+                dbContext.Add(chat);
+                dbContext.SaveChanges();
+            }
+
+            return chat;
         }
     }
 }

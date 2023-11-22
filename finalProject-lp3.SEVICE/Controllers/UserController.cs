@@ -3,7 +3,7 @@ using finalProject_lp3.MODEL;
 using finalProject_lp3.BLL;
 
 
-namespace finalProject_lp3.SERVICOS.Controllers
+namespace finalProject_lp3.SERVICE.Controllers
 {
     [Route("user")]
     [ApiController]

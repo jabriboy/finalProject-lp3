@@ -8,7 +8,7 @@ namespace finalProject_lp3.DAL.DBContext;
 public partial class DbContext : Microsoft.EntityFrameworkCore.DbContext
 {
     public DbContext()
-    {
+    {   
     }
 
     public DbContext(DbContextOptions<DbContext> options)
@@ -50,10 +50,6 @@ public partial class DbContext : Microsoft.EntityFrameworkCore.DbContext
                 .IsUnicode(false)
                 .HasColumnName("message");
 
-            entity.HasOne(d => d.IdChatNavigation).WithMany(p => p.Messages)
-                .HasForeignKey(d => d.IdChat)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Messages__id_cha__3A81B327");
         });
 
         modelBuilder.Entity<User>(entity =>
