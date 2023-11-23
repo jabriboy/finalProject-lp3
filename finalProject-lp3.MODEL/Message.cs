@@ -13,4 +13,5 @@ public partial class Message
 
     public string Message1 { get; set; } = null!;
 
+    public virtual Chat IdChatNavigation { get; set; } = null!;
 }

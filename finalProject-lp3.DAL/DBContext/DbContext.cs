@@ -24,7 +24,7 @@ public partial class DbContext : Microsoft.EntityFrameworkCore.DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\jabri\\source\\repos\\finalProject-lp3\\finalProject-lp3.DAL\\database\\database.mdf;Integrated Security=True");
+        => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Victor\\Downloads\\finalProject-lp3\\finalProject-lp3.DAL\\database\\database.mdf;Integrated Security=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -49,7 +49,9 @@ public partial class DbContext : Microsoft.EntityFrameworkCore.DbContext
             entity.Property(e => e.Message1)
                 .IsUnicode(false)
                 .HasColumnName("message");
-
+            entity.HasOne(d => d.IdChatNavigation).WithMany(p => p.Messages)
+                .HasForeignKey(d => d.IdChat)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<User>(entity =>
