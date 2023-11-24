@@ -42,6 +42,21 @@ namespace finalProject_lp3.SERVICE.Controllers
             }
         }
 
+        [HttpGet("/getAllInChat/{id}", Name = "GetAllMessagesInChatById")]
+        public ActionResult<List<Message>> getAllMessagesInChat(int id)
+        {
+            try
+            {
+                var messages = MessagesRepository.getAllMessagesInChat(id);
+                return messages == null ? NotFound() : Ok(messages);
+
+            } catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
         [HttpPost(Name = "AdicionarMessage")]
         public ActionResult<Message> addMessage(Message message)
         {
@@ -53,7 +68,7 @@ namespace finalProject_lp3.SERVICE.Controllers
 
             } catch(Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, ex.InnerException.Message);
             }
         }
 

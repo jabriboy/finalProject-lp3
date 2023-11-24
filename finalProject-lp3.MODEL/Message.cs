@@ -12,6 +12,4 @@ public partial class Message
     public int IdUser { get; set; }
 
     public string Message1 { get; set; } = null!;
-
-    public virtual Chat IdChatNavigation { get; set; } = null!;
 }

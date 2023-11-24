@@ -13,21 +13,29 @@ namespace finalProject_lp3.BLL
     {
         public static Message addMessage(Message _m)
         {
-            using (var dbContext = new DbContext())
+            using (var dbContext = new Dbcontext())
             {
+                var chat = ChatRepository.getById(_m.IdChat);
+                if(chat == null) { return null; }
                 dbContext.Add(_m);
-                /*Chat c = ChatRepository.getById(_m.IdChat);
-                if (c == null) { return null; }
-                c.Messages.Add(_m);
-                ChatRepository.updateChat(c);*/
                 dbContext.SaveChanges();
             }
             return _m;
         }
 
+        public static List<Message> getAllMessagesInChat(int id)
+        {
+            using (var dbContext = new Dbcontext())
+            {
+                var messages = dbContext.Messages.ToList().FindAll(p => p.IdChat == id);
+                if (messages == null) { return null; }
+                return messages;
+            }
+        }
+
         public static Message removeMessage(Message _m)
         {
-            using (var dbContext = new DbContext())
+            using (var dbContext = new Dbcontext())
             {
                 dbContext.Remove(_m);
                 dbContext.SaveChanges();
@@ -37,7 +45,7 @@ namespace finalProject_lp3.BLL
 
         public static Message getById(int id)
         {
-            using (var dbContext = new DbContext())
+            using (var dbContext = new Dbcontext())
             {
                 try
                 {
@@ -54,7 +62,7 @@ namespace finalProject_lp3.BLL
 
         public static List<Message> getAll()
         {
-            using (var dbContext = new DbContext())
+            using (var dbContext = new Dbcontext())
             {
                 var messages = dbContext.Messages.ToList();
                 return messages;

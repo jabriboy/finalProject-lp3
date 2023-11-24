@@ -13,7 +13,7 @@ namespace finalProject_lp3.BLL
     {
         public static User addUser(User _u)
         {
-            using (var dbContext = new DbContext())
+            using (var dbContext = new Dbcontext())
             {
                 dbContext.Add(_u);
                 dbContext.SaveChanges();
@@ -23,7 +23,7 @@ namespace finalProject_lp3.BLL
 
         public static User removeUser(User _u)
         {
-            using (var dbContext = new DbContext())
+            using (var dbContext = new Dbcontext())
             {
                 dbContext.Remove(_u);
                 dbContext.SaveChanges();
@@ -33,7 +33,7 @@ namespace finalProject_lp3.BLL
 
         public static User getById(int id)
         {
-            using(var dbContext = new DbContext())
+            using(var dbContext = new Dbcontext())
             {
                 try
                 {
@@ -49,7 +49,7 @@ namespace finalProject_lp3.BLL
 
         public static List<User> getAll()
         {
-            using (var dbContext = new DbContext())
+            using (var dbContext = new Dbcontext())
             {
                 var users = dbContext.Users.ToList();
                 return users;
