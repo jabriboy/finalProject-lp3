@@ -58,10 +58,15 @@ namespace finalProject_lp3.SERVICE.Controllers
 
 
         [HttpPost(Name = "AdicionarMessage")]
-        public ActionResult<Message> addMessage(Message message)
+        public ActionResult<Message> addMessage(int idChat, int idUser, string message1)
         {
             try
             {
+                Message message = new Message();
+                message.IdChat = idChat;
+                message.IdUser = idUser;
+                message.Message1 = message1;
+                message.Id = MessagesRepository.getAll().Count();
                 Message m = MessagesRepository.addMessage(message);
 
                 return m == null ? NotFound() : Ok(m);

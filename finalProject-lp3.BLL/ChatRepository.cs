@@ -19,9 +19,9 @@ namespace finalProject_lp3.BLL
                 var user2 = UserRepository.getById(_c.IdUser2);
                 if(user1 == null || user2 == null || user1 == user2) { return null; }
 
-                // verifica se já não existe um chat entre esses 2 usuários
-                var sameChat = ChatRepository.getAll().ToList().FindAll(p => p.IdUser1 == user1.Id || p.IdUser1 == user2.Id && p.IdUser2 == user1.Id || p.IdUser2 == user2.Id);
-                if(sameChat != null) { return null; }
+                /*// verifica se já não existe um chat entre esses 2 usuários
+                var sameChat = ChatRepository.getAll().FindAll(p => p.IdUser1 == user1.Id || p.IdUser1 == user2.Id && p.IdUser2 == user1.Id || p.IdUser2 == user2.Id).ToList();
+                if(sameChat != null) { return null; }*/
 
                 dbContext.Add(_c);
                 dbContext.SaveChanges();
@@ -61,6 +61,15 @@ namespace finalProject_lp3.BLL
             using (var dbContext = new Dbcontext())
             {
                 var chats = dbContext.Chats.ToList();
+                return chats;
+            }
+        }
+
+        public static List<Chat> getByUserId(int userId)
+        {
+            using (var dbContext = new Dbcontext())
+            {
+                var chats = dbContext.Chats.Where(p => p.IdUser1 == userId).ToList();
                 return chats;
             }
         }

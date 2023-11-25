@@ -43,6 +43,20 @@ namespace finalProject_lp3.SERVICE.Controllers
             }
         }
 
+        [HttpGet("getByUserId", Name = "getAllChatsByUser1Id")]
+        public ActionResult<List<Chat>> getByUserId(int userId)
+        {
+            try
+            {
+                var chats = ChatRepository.getByUserId(userId);
+                if(chats == null) { return NotFound(); }
+                return Ok(chats);
+            } catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost(Name = "AdicionarChat")]
         public ActionResult<User> addUser(Chat chat)
         {

@@ -58,6 +58,21 @@ namespace finalProject_lp3.SERVICE.Controllers
             }
         }
 
+        [HttpPost("verifyLogin", Name = "verifyLogin")]
+        public ActionResult<User> verifyLogin(User user)
+        {
+            try
+            {
+                var _user = UserRepository.verifyLogin(user);
+                if(_user == null) { return NotFound(); }
+                return Ok(_user);
+
+            } catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
         [HttpDelete("/{id}", Name = "DeleteUserById")]
         public ActionResult<User> deleteUser(int id)
         {
