@@ -58,11 +58,15 @@ namespace finalProject_lp3.SERVICE.Controllers
         }
 
         [HttpPost(Name = "AdicionarChat")]
-        public ActionResult<User> addUser(Chat chat)
+        public ActionResult<User> addUser(int id, int idUser1, int idUser2)
         {
             try
             {
-                Chat c = ChatRepository.addChat(chat);
+                Chat _chat = new Chat();
+                _chat.Id = id;
+                _chat.IdUser1 = idUser1;
+                _chat.IdUser2 = idUser2;
+                Chat c = ChatRepository.addChat(_chat);
 
                 return c == null ? NotFound() : Ok(c);
 

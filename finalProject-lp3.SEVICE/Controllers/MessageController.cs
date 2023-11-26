@@ -68,7 +68,7 @@ namespace finalProject_lp3.SERVICE.Controllers
                 message.Message1 = message1;
                 message.Id = MessagesRepository.getAll().Count();
                 Message m = MessagesRepository.addMessage(message);
-
+    
                 return m == null ? NotFound() : Ok(m);
 
             } catch(Exception ex)

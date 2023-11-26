@@ -69,7 +69,7 @@ namespace finalProject_lp3.BLL
         {
             using (var dbContext = new Dbcontext())
             {
-                var chats = dbContext.Chats.Where(p => p.IdUser1 == userId).ToList();
+                var chats = dbContext.Chats.Where(p => p.IdUser1 == userId || p.IdUser2 == userId).ToList();
                 return chats;
             }
         }

@@ -43,12 +43,33 @@ namespace finalProject_lp3.SERVICE.Controllers
             }
         }
 
-        [HttpPost(Name = "AdicionarUser")]
-        public ActionResult<User> addUser(User user)
+        [HttpGet("/username/{username}", Name = "GetUserByUsername")]
+        public ActionResult<User> getUserByUsername(string username)
         {
             try
             {
-                User u = UserRepository.addUser(user);
+                var user = UserRepository.getByUsername(username);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("post", Name = "AdicionarUser")]
+        public ActionResult<User> addUser(string username, string password)
+        {
+            try
+            {   User _user = new User();
+                _user.Id = UserRepository.getAll().Count();
+                _user.Username = username;
+                _user.Password = password;
+                User u = UserRepository.addUser(_user);
 
                 return u == null ? NotFound() : Ok(u);
 

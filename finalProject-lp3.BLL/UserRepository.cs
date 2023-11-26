@@ -47,6 +47,23 @@ namespace finalProject_lp3.BLL
             }
         }
 
+        public static User getByUsername(string username)
+        {
+            using (var dbContext = new Dbcontext())
+            {
+                try
+                {
+                    var User = dbContext.Users.Single(p => p.Username == username);
+                    return User;
+
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
         public static User verifyLogin(User user)
         {
             using (var dbContext = new Dbcontext())
