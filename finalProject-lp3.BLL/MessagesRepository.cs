@@ -11,6 +11,7 @@ namespace finalProject_lp3.BLL
 {
     public static class MessagesRepository
     {
+
         public static Message addMessage(Message _m)
         {
             using (var dbContext = new Dbcontext())
@@ -66,6 +67,15 @@ namespace finalProject_lp3.BLL
             {
                 var messages = dbContext.Messages.ToList();
                 return messages;
+            }
+    
+        }
+        public static int CountMessage(int id)
+        {
+            using (var dbContext = new Dbcontext())
+            {
+                var count = dbContext.Messages.Count(p => p.IdChat == id);
+                return count;
             }
         }
     }
