@@ -29,7 +29,7 @@ Cada um responsável por tratar a lógica de cada tabela.
 
 ### Service
 
-Camada responsável por disponibilizar métodos HTTP capazes de utilizar os recursos do projeto.
+Camada responsável por disponibilizar métodos HTTP capazes de utilizar os recursos do projeto. Métodos presentes:
 - UserController;
 - ChatController;
 - MesageController;
